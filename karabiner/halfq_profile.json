@@ -1,0 +1,48 @@
+{
+  "title": "HalfQ Left (US-Intl) + Overlay",
+  "rules": [
+    {
+      "description": "SPACE como gatilho HalfQ + overlay (imediato)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "spacebar" },
+          "to": [
+            { "set_variable": { "name": "half_qwerty_left", "value": 1 } },
+            { "shell_command": "open -g 'hammerspoon://halfq?show=1'" }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "half_qwerty_left", "value": 0 } },
+            { "shell_command": "open -g 'hammerspoon://halfq?show=0'" }
+          ],
+          "to_if_alone": [ { "key_code": "spacebar" } ]
+        },
+        {
+          "type": "basic",
+          "from": { "pointing_button": "button1" },
+          "to": [
+            { "set_variable": { "name": "half_qwerty_left", "value": 1 } },
+            { "shell_command": "open -g 'hammerspoon://halfq?show=1'" }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "half_qwerty_left", "value": 0 } },
+            { "shell_command": "open -g 'hammerspoon://halfq?show=0'" }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "f1" },
+          "conditions": [
+            { "type": "variable_if", "name": "half_qwerty_left", "value": 1 }
+          ],
+          "to": [
+            { "shell_command": "open -g 'hammerspoon://halfq?mouse=down'" }
+          ],
+          "to_after_key_up": [
+            { "shell_command": "open -g 'hammerspoon://halfq?mouse=up'" }
+          ]
+        }
+      ]
+    }
+  ]
+}
